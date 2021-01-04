@@ -76,6 +76,7 @@
         port: 8080/tcp
         permanent: yes
         state: enabled
+   - name: Reload Firewall
      shell: sudo firewall-cmd --reload
    - name: Configure Tomcat Authentication
      lineinfile:
