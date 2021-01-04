@@ -4,7 +4,6 @@
   become: yes
   become_method: sudo
   become_user: root
-  become_password: rhelroot
   tasks:
    - name: Install OpenJDK 11 
      yum:
