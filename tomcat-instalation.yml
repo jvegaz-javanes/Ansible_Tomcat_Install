@@ -32,13 +32,14 @@
    - name: Create symlink to extracted tomcat data.
      shell: sudo ln -s /usr/share/apache-tomcat-${VER}/ /usr/share/tomcat
    - name: Set proper directory permissions
-     shell: |
-       sudo chown -R tomcat:tomcat /usr/share/tomcat
-       sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-${VER}
-   - name: Configure Tomcat 9 Systemd service
+     shell: sudo chown -R tomcat:tomcat /usr/share/tomcat
+   - name: Set proper directory permissions
+     shell: sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-${VER}/
+   - name: Create Tomcat 9 Systemd service
      file:
        path: /etc/systemd/system/tomcat.service
        state: touch
+   - name: Configure Tomcat 9 Systemd Service
      lineinfile:
        path: /etc/systemd/system/tomcat.service
        line: | 
