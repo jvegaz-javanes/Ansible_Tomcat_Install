@@ -100,6 +100,7 @@
      file:
        path: /etc/httpd/conf.d/tomcat_manager.conf
        state: touch
+   - name: Config VirtualHost 
      lineinfile:
        path: /etc/httpd/conf.d/tomcat_manager.conf
        line: | 
@@ -123,4 +124,4 @@
      service:
        name: httpd
        state: Restart
-       enabled: true
+       enabled: yes
