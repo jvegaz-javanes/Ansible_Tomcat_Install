@@ -34,7 +34,7 @@
    - name: Set proper directory permissions
      shell: |
        sudo chown -R tomcat:tomcat /usr/share/tomcat
-       sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-$9.0.41/
+       sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-${VER}
    - name: Configure Tomcat 9 Systemd service
      file:
        path: /etc/systemd/system/tomcat.service
