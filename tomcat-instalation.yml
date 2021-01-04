@@ -17,7 +17,8 @@
    - name: Source the file to start using it without logging out.
      shell: source /etc/profile.d/java11.sh
    - name: Create tomcat user and group
-     shell: sudo groupadd --system tomcat
+     shell: |
+       sudo groupadd --system tomcat
        sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
    - name: Install Tomcat 9
      shell: | 
