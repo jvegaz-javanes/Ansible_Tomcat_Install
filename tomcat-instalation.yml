@@ -70,9 +70,9 @@
      service:
        name: tomcat
        state: started
-       enabled: true
+       enabled: yes
    - name: Configure Firewall
-     ansible.posix.firewalld:
+     firewalld:
         port: 8080/tcp
         permanent: yes
         state: enabled
