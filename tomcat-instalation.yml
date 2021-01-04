@@ -1,7 +1,9 @@
 ---
 - name: Tomcat server installed
-  hosts: "tomcat-server"
+  hosts: tomcat-server
   become: yes
+  become_method: sudo
+  become_user: root
   tasks:
    - name: Install OpenJDK 11 
      yum:
@@ -32,7 +34,7 @@
    - name: Set proper directory permissions
      shell: |
        sudo chown -R tomcat:tomcat /usr/share/tomcat
-       sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-{$VER}/
+       sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-${VER}/
    - name: Configure Tomcat 9 Systemd service
      file:
        path: /etc/systemd/system/tomcat.service
