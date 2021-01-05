@@ -31,11 +31,11 @@
      shell: sudo ansible-galaxy collection install ansible.posix
    - name: Source the file to start using it without logging out.
      shell: source /etc/profile.d/java11.sh
-   - name: User Verificaction
-     user:
-       name: tomcat
-       state: absent
-       remove: yes
+ ##  - name: User Verificaction
+ ##    user:
+ ##      name: tomcat
+ ##      state: absent
+ ##      remove: yes
   ## - name: Group Verification
   ##   group:
   ##     name: tomcat
