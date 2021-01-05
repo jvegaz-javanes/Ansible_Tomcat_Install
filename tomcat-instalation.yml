@@ -14,6 +14,8 @@
        export PATH=\$PATH:\$JAVA_HOME/bin
        export CLASSPATH=.:\$JAVA_HOME/jre/lib:\$JAVA_HOME/lib:\$JAVA_HOME/lib/tools.jar
        EOF
+   - name: Install Dependences for Firewalld
+     shell: sudo ansible-galaxy collection install ansible.posix
    - name: Source the file to start using it without logging out.
      shell: source /etc/profile.d/java11.sh
    - name: User Verificaction
@@ -82,8 +84,6 @@
        name: tomcat
        state: started
        enabled: yes
-   - name: Install Dependences for Firewalld
-     shell: sudo ansible-galaxy collection install ansible.posix
    - name: Configure Firewall
      firewalld:
         port: 8080/tcp
