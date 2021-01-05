@@ -19,12 +19,11 @@
    - name: Group Verification
      group:
        name: tomcat
-       state: present
-       remove: yes
+       state: absent
    - name: User Verificaction
      user:
        name: tomcat
-       state: present
+       state: absent
        remove: yes
    - name: Create tomcat group
      shell: sudo groupadd --system tomcat
