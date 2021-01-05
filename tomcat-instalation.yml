@@ -82,6 +82,8 @@
        name: tomcat
        state: started
        enabled: yes
+   - name: Install Dependences for Firewalld
+     shell: sudo ansible-galaxy collection install ansible.posix
    - name: Configure Firewall
      firewalld:
         port: 8080/tcp
