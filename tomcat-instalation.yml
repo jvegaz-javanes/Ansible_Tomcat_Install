@@ -88,10 +88,8 @@
        name: tomcat
        state: started
        enabled: yes
-   - ansible.posix.firewalld:
-        port: 8080/tcp
-        permanent: yes
-        state: enabled
+   - name: Enable port 8080
+     shell: sudo firewall-cmd --permanent --add-port=8080/tcp
    - name: Reload Firewall
      shell: sudo firewall-cmd --reload
    - name: Configure Tomcat Authentication
