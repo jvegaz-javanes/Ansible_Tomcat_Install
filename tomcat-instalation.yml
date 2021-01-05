@@ -1,6 +1,6 @@
 ---
 - name: Tomcat server installed
-  hosts: node2
+  hosts: node3
   become: yes
   tasks:
    - name: Uptade Ansible
