@@ -1,6 +1,6 @@
 ---
 - name: Tomcat server installed
-  hosts: all
+  hosts: node1
   become: yes
   tasks:
    - name: Install OpenJDK 11 
