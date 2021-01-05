@@ -1,9 +1,7 @@
 ---
 - name: Tomcat server installed
-  hosts: tomcat-server
+  hosts: all
   become: yes
-  become_method: sudo
-  become_user: root
   tasks:
    - name: Install OpenJDK 11 
      yum:
