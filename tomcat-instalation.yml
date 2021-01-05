@@ -30,18 +30,22 @@
    - name: Create user tomcat   
      shell: sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
    - name: Install Tomcat 9
-     shell: | 
-       sudo yum -y install wget
-       export VER="9.0.41"
-       wget https://archive.apache.org/dist/tomcat/tomcat-9/v${VER}/bin/apache-tomcat-${VER}.tar.gz
-   - name: Extract file with tar 
-     shell: sudo tar xvf apache-tomcat-${VER}.tar.gz -C /usr/share/
+     unarchive:
+       src: https://archive.apache.org/dist/tomcat/tomcat-9/v${VER}/bin/apache-tomcat-9.0.41.tar.gz
+       dest: /usr/share/
+       remote_src: yes
+    ## shell: | 
+    ##   sudo yum -y install wget
+    ##   export VER="9.0.41"
+    ##  wget https://archive.apache.org/dist/tomcat/tomcat-9/v${VER}/bin/apache-tomcat-${VER}.tar.gz
+  ## - name: Extract file with tar 
+   ##  shell: sudo tar xvf apache-tomcat-${VER}.tar.gz -C /usr/share/
    - name: Create symlink to extracted tomcat data.
-     shell: sudo ln -s /usr/share/apache-tomcat-$VER/ /usr/share/tomcat
+     shell: sudo ln -s /usr/share/apache-tomcat-9.0.41/ /usr/share/tomcat
    - name: Set proper directory permissions
      shell: sudo chown -R tomcat:tomcat /usr/share/tomcat
    - name: Set proper directory permissions
-     shell: sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-$VER/
+     shell: sudo chown -R tomcat:tomcat /usr/share/apache-tomcat-9.0.41/
    - name: Create Tomcat 9 Systemd service
      file:
        path: /etc/systemd/system/tomcat.service
