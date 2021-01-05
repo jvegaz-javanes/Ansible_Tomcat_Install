@@ -1,8 +1,12 @@
 ---
 - name: Tomcat server installed
-  hosts: node1
+  hosts: node2
   become: yes
   tasks:
+   - name: Uptade Ansible
+     yum: 
+       name: ansible
+       state: latest
    - name: Install OpenJDK 11 
      yum:
        name: java-11-openjdk-devel
