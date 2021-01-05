@@ -89,7 +89,7 @@
        state: started
        enabled: yes
    - name: Configure Firewall
-     ansible.posix.firewalld:
+   - ansible.posix.firewalld:
         port: 8080/tcp
         permanent: yes
         state: enabled
