@@ -11,6 +11,11 @@
      yum:
        name: firewalld
        state: latest
+   - name: Start and Enable Firewalld
+     service:
+       name: firewalld
+       state: started
+       enabled: yes
    - name: Install OpenJDK 11 
      yum:
        name: java-11-openjdk-devel
@@ -31,14 +36,14 @@
        name: tomcat
        state: absent
        remove: yes
-   - name: Group Verification
-     group:
-       name: tomcat
-       state: absent
-   - name: Create tomcat group
-     shell: sudo groupadd --system tomcat
-   - name: Create user tomcat   
-     shell: sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
+  ## - name: Group Verification
+  ##   group:
+  ##     name: tomcat
+  ##     state: absent
+  ## - name: Create tomcat group
+  ##   shell: sudo groupadd --system tomcat
+  ## - name: Create user tomcat   
+  ##   shell: sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
    - name: Install Tomcat 9
      unarchive:
        src: https://archive.apache.org/dist/tomcat/tomcat-9/v9.0.41/bin/apache-tomcat-9.0.41.tar.gz
