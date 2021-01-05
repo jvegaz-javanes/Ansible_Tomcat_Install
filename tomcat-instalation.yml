@@ -18,6 +18,16 @@
        EOF
    - name: Source the file to start using it without logging out.
      shell: source /etc/profile.d/java11.sh
+   - name: Group Verification
+     group:
+       name: tomcat
+       state: abstent
+       remove: yes
+   - name: User Verificaction
+     user:
+       name: tomcat
+       state: abstent
+       remove: yes
    - name: Create tomcat group
      shell: sudo groupadd --system tomcat
    - name: Create user tomcat   
