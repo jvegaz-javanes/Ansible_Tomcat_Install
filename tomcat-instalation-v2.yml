@@ -32,18 +32,18 @@
      group:
        name: tomcat
        state: present 
-       register: state
+     register: group_state
    - name: Create tomcat group   
      shell: sudo groupadd --system tomcat
-     when: state == "absent"
+     when: group_state == "absent"
    - name: Validate User
      user:
        name: tomcat
        state: present 
-       register: state
+     register: user_state
    - name: Create user tomcat   
      shell: sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
-     when: state == "absent"
+     when: user_state == "absent"
    - name: Install Tomcat 9
      unarchive:
        src: https://archive.apache.org/dist/tomcat/tomcat-9/v${VER}/bin/apache-tomcat-${VER}.tar.gz
