@@ -49,8 +49,6 @@
        src: https://archive.apache.org/dist/tomcat/tomcat-9/v{{ VER }}/bin/apache-tomcat-{{ VER }}.tar.gz
        dest: /usr/share/
        remote_src: yes
-   - name: Extract file with tar 
-     shell: sudo tar xvf apache-tomcat-{{ VER }}.tar.gz -C /usr/share/
    - name: Create symlink to extracted tomcat data.
      shell: sudo ln -s /usr/share/apache-tomcat-{{ VER }}/ /usr/share/tomcat
    - name: Set proper directory permissions
