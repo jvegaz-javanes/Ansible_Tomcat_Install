@@ -2,7 +2,8 @@
 - name: Tomcat server installed
   hosts: node3
   become: yes
-  vars: VER="9.0.41"
+  vars: 
+    VER: 9.0.41
   tasks:
    - name: Install OpenJDK 11 
      yum:
