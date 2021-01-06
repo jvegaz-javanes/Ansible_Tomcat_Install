@@ -1,6 +1,6 @@
 ---
 - name: Tomcat server installed
-  hosts: tomcat-server
+  hosts: node3
   become: yes
   tasks:
    - name: Install OpenJDK 11 
@@ -42,9 +42,8 @@
    - name: Create user tomcat   
      shell: sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
      when: user_state == "absent"
-- name: Install Tomcat 9
-  vars: VER="9.0.41"
-  tasks:
+   - name: Install Tomcat 9
+     vars: VER="9.0.41"
    - name: Extract Tomcat 
      unarchive:
        src: https://archive.apache.org/dist/tomcat/tomcat-9/v${VER}/bin/apache-tomcat-${VER}.tar.gz
