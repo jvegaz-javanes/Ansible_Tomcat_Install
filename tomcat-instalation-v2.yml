@@ -41,7 +41,7 @@
        register: user_state
    - name: Create user tomcat   
      shell: sudo useradd -d /usr/share/tomcat -r -s /bin/false -g tomcat tomcat
-     when: user_state == "absent"
+    ## when: user_state == "absent"
    - name: Install Tomcat 9
      vars: VER="9.0.41"
    - name: Extract Tomcat 
