@@ -33,7 +33,7 @@
        register: group_state
    - name: Create tomcat group   
      shell: sudo groupadd --system tomcat
-     when: group_state == "absent"
+   ##  when: group_state == "absent"
    - name: Validate User
      user:
        name: tomcat
