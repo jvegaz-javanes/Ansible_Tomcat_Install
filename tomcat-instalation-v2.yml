@@ -71,7 +71,6 @@
          Type=forking
          User=tomcat
          Group=tomcat
-
          Environment=JAVA_HOME=/usr/lib/jvm/jre
          Environment='JAVA_OPTS=-Djava.awt.headless=true'
          Environment=CATALINA_HOME=/usr/share/tomcat
@@ -80,10 +79,8 @@
          Environment='CATALINA_OPTS=-Xms512M -Xmx1024M'
          ExecStart=/usr/share/tomcat/bin/catalina.sh start
          ExecStop=/usr/share/tomcat/bin/catalina.sh stop
-
          [Install]
          WantedBy=multi-user.target
-       create: yes
    - name: Reload demon 
      shell: sudo systemctl daemon-reload
    - name: Start and enable Tomcat
@@ -91,8 +88,6 @@
        name: tomcat
        state: started
        enabled: yes
-   - name: Install Dependences for Firewalld
-     shell: sudo ansible-galaxy collection install ansible.posix
    - name: Configure Firewall
      firewalld:
         port: 8080/tcp
@@ -104,7 +99,6 @@
      lineinfile:
        path: /usr/share/tomcat/conf/tomcat-users.xml
        regexp: '\<\/tomcat\>'
-       insertbefore: '\<\/tomcat\>'
        line: | 
          <role rolename="admin-gui"/>
          <role rolename="manager-gui"/>
@@ -113,6 +107,7 @@
          <role rolename="manager-status"/>
          <user username="admin" password="admin"
          roles="admin-gui,manager-gui,manager-script,manager-jmx,manager-status"/>
+         </tomcat>
    - name: Configure Tomcat Proxy
      yum:
        name: httpd
@@ -145,6 +140,18 @@
        name: httpd
        state: restarted
        enabled: yes
+   - name: Enable Tomcat to other hosts
+     lineinfile:
+       path: /usr/share/tomcat/webapps/manager/META-INF/context.xml
+       regexp: 'allow'
+       state: present
+       line: allow=».*» />
+   - name: Enable Tomcat to other hosts
+     lineinfile:
+       path: /usr/share/tomcat/webapps/host-manager/META-INF/context.xml
+       regexp: 'allow'
+       state: present
+       line: allow=».*» />
    - name: Restart Tomcat service
      service:
        name: tomcat
