@@ -1,6 +1,6 @@
 ---
 - name: Tomcat server installed
-  hosts: node3
+  hosts: node2
   become: yes
   vars: 
     VER: 9.0.41
