@@ -157,6 +157,15 @@
        regexp: 'allow'
        state: present
        line: allow=».*» />
+   - name: Download Pollo
+     unarchive:
+       src: https://github.com/jvegaz-javanes/Pollo/archive/main.zip
+       dest: /usr/share/
+       remote_src: yes
+   - name: Copy Pollo to Tomcat
+     copy:
+       src: /usr/share/Pollo-main/polloe.war
+       dest: /usr/share/tomcat/webapps
    - name: Restart Tomcat service
      service:
        name: tomcat
