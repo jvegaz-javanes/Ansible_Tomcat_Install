@@ -17,6 +17,11 @@
      yum: 
        name: firewalld
        state: latest
+   - name: Start Firewalld service
+     service:
+       name: firewalld
+       state: started
+       enabled: yes
    - name: Install Dependences for Firewalld
      shell: sudo ansible-galaxy collection install ansible.posix
    - name:  set Java environment variables
