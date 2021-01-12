@@ -9,9 +9,9 @@
      yum:
        name: java-11-openjdk-devel
        state: latest
-   - name: Install Winzip Package
+   - name: Install Unzip Package
      yum: 
-       name: winzip
+       name: unzip
        state: latest
    - name: Install wget
      yum:
