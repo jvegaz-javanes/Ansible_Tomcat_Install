@@ -175,9 +175,9 @@
        cd /usr/share/
        unzip main.zip
    - name: Copy Pollo to Tomcat
-     copy:
-       src: /usr/share/Pollo-main/polloe.war
-       dest: /usr/share/tomcat/webapps
+     shell: |
+       cd /usr/share/Pollo-main/
+       cp polloe.war /usr/share/tomcat/webapps
    - name: Restart Tomcat service
      service:
        name: tomcat
