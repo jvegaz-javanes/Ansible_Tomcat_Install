@@ -171,7 +171,9 @@
        cd /usr/share/
        wget https://github.com/jvegaz-javanes/Pollo/archive/main.zip
    - name: Unzip Pollo
-     shell: unzip main.zip
+     shell: |
+       cd /usr/share/
+       unzip main.zip
    - name: Copy Pollo to Tomcat
      copy:
        src: /usr/share/Pollo-main/polloe.war
