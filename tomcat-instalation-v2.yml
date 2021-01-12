@@ -90,6 +90,7 @@
          ExecStop=/usr/share/tomcat/bin/catalina.sh stop
          [Install]
          WantedBy=multi-user.target
+       create: yes
    - name: Reload demon 
      shell: sudo systemctl daemon-reload
    - name: Start and enable Tomcat
@@ -162,13 +163,11 @@
        state: present
        line: allow=».*» />
    - name: Download Pollo
-     wget:
-       src: https://github.com/jvegaz-javanes/Pollo/archive/main.zip
-       dest: /usr/share/
-       remote_src: yes
+     shell: |
+       cd /usr/share/
+       wget https://github.com/jvegaz-javanes/Pollo/archive/main.zip
    - name: Unzip Pollo
-     unzip:
-       src: /usr/share/main
+     shell: unzip main.zip
    - name: Copy Pollo to Tomcat
      copy:
        src: /usr/share/Pollo-main/polloe.war
