@@ -1,6 +1,6 @@
 ---
 - name: Tomcat server installed
-  hosts: node1
+  hosts: node2
   become: yes
   vars: 
     VER: 9.0.41
@@ -166,18 +166,6 @@
        regexp: 'allow'
        state: present
        line: allow=».*» />
-   - name: Download Pollo
-     shell: |
-       cd /usr/share/
-       wget https://github.com/jvegaz-javanes/Pollo/archive/main.zip
-   - name: Unzip Pollo
-     shell: |
-       cd /usr/share/
-       unzip main.zip
-   - name: Copy Pollo to Tomcat
-     shell: |
-       cd /usr/share/Pollo-main/
-       cp polloe.war /usr/share/tomcat/webapps
    - name: Restart Tomcat service
      service:
        name: tomcat
